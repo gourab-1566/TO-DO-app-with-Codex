@@ -1,0 +1,633 @@
+/* =========================================================
+   Root Variables
+   ========================================================= */
+
+:root {
+    --font-family-base: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-family-heading: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --color-bg: #f4f7fb;
+    --color-surface: #ffffff;
+    --color-surface-muted: #f8fafc;
+    --color-border: #e2e8f0;
+    --color-text: #1e293b;
+    --color-text-muted: #64748b;
+    --color-text-soft: #94a3b8;
+    --color-primary: #2563eb;
+    --color-primary-hover: #1d4ed8;
+    --color-primary-soft: #dbeafe;
+    --color-success: #16a34a;
+    --color-success-soft: #dcfce7;
+    --color-warning: #ea580c;
+    --color-warning-soft: #ffedd5;
+    --color-danger: #dc2626;
+    --color-danger-hover: #b91c1c;
+    --color-danger-soft: #fee2e2;
+    --shadow-sm: 0 4px 10px rgba(15, 23, 42, 0.04);
+    --shadow-md: 0 10px 30px rgba(15, 23, 42, 0.08);
+    --shadow-lg: 0 20px 45px rgba(15, 23, 42, 0.12);
+    --radius-sm: 0.625rem;
+    --radius-md: 1rem;
+    --radius-lg: 1.5rem;
+    --radius-pill: 999px;
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --transition-fast: 0.18s ease;
+    --transition-base: 0.28s ease;
+}
+
+
+/* =========================================================
+   Base Reset
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family-base);
+    background: radial-gradient(circle at top left, #000000 0%, transparent 35%), radial-gradient(circle at bottom right, #000000 0%, transparent 30%), var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   Global Element Styles
+   ========================================================= */
+
+img,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+p,
+h1,
+h2,
+h3 {
+    margin: 0;
+}
+
+time {
+    color: var(--color-text-muted);
+}
+
+
+/* =========================================================
+   App Layout
+   ========================================================= */
+
+.todo-app {
+    width: min(100% - 2rem, 880px);
+    margin: 3rem auto;
+    padding: var(--space-8);
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(14px);
+}
+
+.todo-app__main {
+    display: grid;
+    gap: var(--space-6);
+}
+
+.todo-app__section {
+    display: grid;
+    gap: var(--space-4);
+}
+
+.todo-app__section-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+
+/* =========================================================
+   Header
+   ========================================================= */
+
+.todo-app__header {
+    margin-bottom: var(--space-8);
+}
+
+.todo-app__branding {
+    display: grid;
+    gap: var(--space-2);
+}
+
+.todo-app__title {
+    font-family: var(--font-family-heading);
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--color-text);
+}
+
+.todo-app__subtitle {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    max-width: 40rem;
+}
+
+
+/* =========================================================
+   Form Layout
+   ========================================================= */
+
+.task-form {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr 1fr auto;
+    gap: var(--space-4);
+    align-items: end;
+}
+
+.task-form__field,
+.subtask-form__field {
+    display: grid;
+    gap: var(--space-2);
+}
+
+.task-form__label,
+.subtask-form__label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+}
+
+
+/* =========================================================
+   Inputs, Selects, Date Pickers
+   ========================================================= */
+
+.task-form__input,
+.task-form__select,
+.subtask-form__input {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    color: var(--color-text);
+    outline: none;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.task-form__input::placeholder,
+.subtask-form__input::placeholder {
+    color: var(--color-text-soft);
+}
+
+.task-form__input:focus,
+.task-form__select:focus,
+.subtask-form__input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+    background: #ffffff;
+}
+
+.task-form__select {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, var(--color-text-muted) 50%), linear-gradient(135deg, var(--color-text-muted) 50%, transparent 50%);
+    background-position: calc(100% - 1.1rem) calc(50% - 0.15rem), calc(100% - 0.8rem) calc(50% - 0.15rem);
+    background-size: 0.35rem 0.35rem, 0.35rem 0.35rem;
+    background-repeat: no-repeat;
+    padding-right: 2.5rem;
+}
+
+
+/* =========================================================
+   Buttons
+   ========================================================= */
+
+.task-form__button,
+.subtask-form__button,
+.task-filters__button,
+.task-card__delete-button,
+.subtask-card__delete-button {
+    border: 0;
+    border-radius: var(--radius-md);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast), opacity var(--transition-fast);
+}
+
+.task-form__button,
+.subtask-form__button {
+    min-height: 3rem;
+    padding: 0.85rem 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    background: var(--color-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+.task-form__button:hover,
+.subtask-form__button:hover {
+    background: var(--color-primary-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.task-form__button:active,
+.subtask-form__button:active,
+.task-filters__button:active,
+.task-card__delete-button:active,
+.subtask-card__delete-button:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   Filters
+   ========================================================= */
+
+.task-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+}
+
+.task-filters__button {
+    padding: 0.7rem 1rem;
+    background: var(--color-surface-muted);
+    color: var(--color-text-muted);
+    font-weight: 600;
+    border: 1px solid transparent;
+}
+
+.task-filters__button:hover {
+    background: #eef2ff;
+    color: var(--color-primary);
+}
+
+.task-filters__button--active {
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+    border-color: rgba(37, 99, 235, 0.14);
+}
+
+
+/* =========================================================
+   Task List
+   ========================================================= */
+
+.task-list {
+    display: grid;
+    gap: var(--space-4);
+}
+
+.task-list__item {
+    animation: fade-slide-up 0.35s ease both;
+}
+
+
+/* =========================================================
+   Empty State
+   ========================================================= */
+
+.task-list__empty-state {
+    padding: var(--space-8);
+    text-align: center;
+    color: var(--color-text-muted);
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-lg);
+}
+
+
+/* =========================================================
+   Task Card
+   ========================================================= */
+
+.task-card {
+    display: grid;
+    gap: var(--space-5);
+    padding: var(--space-5);
+    background: var(--color-surface);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+}
+
+.task-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: #dbe4f0;
+}
+
+.task-card__main {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: var(--space-4);
+}
+
+.task-card__status {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    flex: 1;
+}
+
+.task-card__label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    word-break: break-word;
+}
+
+.task-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+
+/* =========================================================
+   Custom Checkbox
+   ========================================================= */
+
+.task-card__checkbox,
+.subtask-card__checkbox {
+    appearance: none;
+    flex-shrink: 0;
+    width: 1.15rem;
+    height: 1.15rem;
+    margin-top: 0.15rem;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 0.35rem;
+    background: #ffffff;
+    display: inline-grid;
+    place-items: center;
+    transition: background-color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.task-card__checkbox::after,
+.subtask-card__checkbox::after {
+    content: "";
+    width: 0.38rem;
+    height: 0.65rem;
+    border-right: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    transform: rotate(45deg) scale(0);
+    transition: transform var(--transition-fast);
+}
+
+.task-card__checkbox:checked,
+.subtask-card__checkbox:checked {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.task-card__checkbox:checked::after,
+.subtask-card__checkbox:checked::after {
+    transform: rotate(45deg) scale(1);
+}
+
+
+/* =========================================================
+   Priority Badges
+   ========================================================= */
+
+.task-card__priority {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.task-card__priority--low {
+    color: var(--color-success);
+    background: var(--color-success-soft);
+}
+
+.task-card__priority--medium {
+    color: var(--color-warning);
+    background: var(--color-warning-soft);
+}
+
+.task-card__priority--high {
+    color: var(--color-danger);
+    background: var(--color-danger-soft);
+}
+
+.task-card__due-date {
+    font-size: 0.9rem;
+}
+
+
+/* =========================================================
+   Task Actions
+   ========================================================= */
+
+.task-card__actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.task-card__delete-button,
+.subtask-card__delete-button {
+    padding: 0.65rem 0.9rem;
+    font-weight: 600;
+    color: var(--color-danger);
+    background: var(--color-danger-soft);
+}
+
+.task-card__delete-button:hover,
+.subtask-card__delete-button:hover {
+    background: #fecaca;
+    color: var(--color-danger-hover);
+}
+
+
+/* =========================================================
+   Subtasks
+   ========================================================= */
+
+.task-card__subtasks {
+    display: grid;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    margin-left: var(--space-6);
+    background: var(--color-surface-muted);
+    border-left: 3px solid #dbeafe;
+    border-radius: var(--radius-md);
+}
+
+.task-card__subtasks-title {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+}
+
+.subtask-list {
+    display: grid;
+    gap: var(--space-3);
+}
+
+.subtask-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: 0.8rem 0.9rem;
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+}
+
+.subtask-card__label {
+    flex: 1;
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+}
+
+.subtask-form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-3);
+    align-items: end;
+}
+
+
+/* =========================================================
+   Footer
+   ========================================================= */
+
+.todo-app__footer {
+    margin-top: var(--space-8);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+}
+
+.todo-app__footer-text {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    text-align: center;
+}
+
+
+/* =========================================================
+   Accessibility + Interactive States
+   ========================================================= */
+
+.task-form__button:focus-visible,
+.subtask-form__button:focus-visible,
+.task-filters__button:focus-visible,
+.task-card__delete-button:focus-visible,
+.subtask-card__delete-button:focus-visible,
+.task-form__input:focus-visible,
+.task-form__select:focus-visible,
+.subtask-form__input:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14);
+}
+
+
+/* =========================================================
+   Animations
+   ========================================================= */
+
+@keyframes fade-slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   Responsive Design
+   ========================================================= */
+
+@media (max-width: 768px) {
+    .todo-app {
+        width: min(100% - 1rem, 100%);
+        margin: 1rem auto;
+        padding: var(--space-5);
+        border-radius: var(--radius-md);
+    }
+    .task-form {
+        grid-template-columns: 1fr;
+    }
+    .task-card__main {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .task-card__meta {
+        justify-content: flex-start;
+    }
+    .task-card__actions {
+        justify-content: flex-start;
+    }
+    .task-card__subtasks {
+        margin-left: 0;
+    }
+    .subtask-form {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .todo-app__title {
+        font-size: 1.8rem;
+    }
+    .task-filters {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .task-filters__button {
+        width: 100%;
+        text-align: center;
+    }
+    .task-card {
+        padding: var(--space-4);
+    }
+    .task-card__meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-2);
+    }
+}
