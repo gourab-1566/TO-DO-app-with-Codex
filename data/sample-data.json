@@ -1,0 +1,80 @@
+[{
+        "id": 1,
+        "title": "Finish JavaScript module practice",
+        "completed": false,
+        "priority": "high",
+        "dueDate": "2026-04-02",
+        "subtasks": [{
+                "title": "Review ES6 import/export syntax",
+                "completed": true
+            },
+            {
+                "title": "Build a small demo project",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Morning exercise session",
+        "completed": true,
+        "priority": "medium",
+        "dueDate": "2026-04-01",
+        "subtasks": [{
+                "title": "Stretch for 10 minutes",
+                "completed": true
+            },
+            {
+                "title": "Run 3 kilometers",
+                "completed": true
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Read database design notes",
+        "completed": false,
+        "priority": "low",
+        "dueDate": "2026-04-05",
+        "subtasks": []
+    },
+    {
+        "id": 4,
+        "title": "Submit UI assignment",
+        "completed": true,
+        "priority": "high",
+        "dueDate": "2026-03-31",
+        "subtasks": [{
+                "title": "Finalize layout",
+                "completed": true
+            },
+            {
+                "title": "Check responsiveness",
+                "completed": true
+            },
+            {
+                "title": "Upload project files",
+                "completed": true
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "title": "Plan weekly grocery shopping",
+        "completed": false,
+        "priority": "medium",
+        "dueDate": "2026-04-03",
+        "subtasks": [{
+            "title": "Make a shopping list",
+            "completed": false
+        }]
+    },
+    {
+        "id": 6,
+        "title": "Clean up project repository",
+        "completed": false,
+        "priority": "low",
+        "dueDate": "2026-04-06",
+        "subtasks": []
+    }
+]
