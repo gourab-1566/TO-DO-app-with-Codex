@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css">
+    <title>Todo List App</title>
+</head>
+
+<body>
+    <!-- App container -->
+    <div class="todo-app">
+        <!-- Header: app title and intro -->
+        <header class="todo-app__header">
+            <section class="todo-app__branding" aria-labelledby="app-title">
+                <h1 id="app-title" class="todo-app__title">Todo List</h1>
+                <p class="todo-app__subtitle">Organize tasks, priorities, and subtasks in one place.</p>
+            </section>
+        </header>
+
+        <!-- Main content area -->
+        <main class="todo-app__main">
+            <!-- Task creation section -->
+            <section class="todo-app__section todo-app__section--create" aria-labelledby="create-task-title">
+                <h2 id="create-task-title" class="todo-app__section-title">Add New Task</h2>
+
+                <form class="task-form" action="#" method="post">
+                    <!-- Task title input -->
+                    <div class="task-form__field">
+                        <label class="task-form__label" for="task-input">Task</label>
+                        <input class="task-form__input" type="text" id="task-input" name="task" placeholder="Enter a task" autocomplete="off" />
+                    </div>
+
+                    <!-- Priority selection -->
+                    <div class="task-form__field">
+                        <label class="task-form__label" for="task-priority">Priority</label>
+                        <select class="task-form__select" id="task-priority" name="priority">
+              <option value="low">Low</option>
+              <option value="medium" selected>Medium</option>
+              <option value="high">High</option>
+            </select>
+                    </div>
+
+                    <!-- Due date and time picker -->
+                    <div class="task-form__field">
+                        <label class="task-form__label" for="task-due-date">Due Date &amp; Time</label>
+                        <input class="task-form__input" type="datetime-local" id="task-due-date" name="dueDate" />
+                    </div>
+
+                    <!-- Submit button -->
+                    <div class="task-form__actions">
+                        <button class="task-form__button" type="submit">Add Task</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Task filter controls -->
+            <section class="todo-app__section todo-app__section--filters" aria-labelledby="filter-title">
+                <h2 id="filter-title" class="todo-app__section-title">Filter Tasks</h2>
+
+                <nav class="task-filters" aria-label="Task filters">
+                    <button class="task-filters__button task-filters__button--active" type="button" data-filter="all">
+            All
+          </button>
+                    <button class="task-filters__button" type="button" data-filter="completed">
+            Completed
+          </button>
+                    <button class="task-filters__button" type="button" data-filter="pending">
+            Pending
+          </button>
+                </nav>
+            </section>
+
+            <!-- Task list section -->
+            <section class="todo-app__section todo-app__section--list" aria-labelledby="task-list-title">
+                <h2 id="task-list-title" class="todo-app__section-title">Your Tasks</h2>
+
+                <!-- Empty state shown when no tasks exist -->
+                <p class="task-list__empty-state" role="status" aria-live="polite">
+                    No tasks yet
+                </p>
+
+                <!-- Task list container for dynamic JavaScript rendering -->
+                <ul class="task-list" aria-label="Todo items">
+                    <!-- Single task item example -->
+                    <li class="task-list__item" data-task-id="1">
+                        <article class="task-card">
+                            <!-- Main task content -->
+                            <div class="task-card__main">
+                                <div class="task-card__status">
+                                    <input class="task-card__checkbox" type="checkbox" id="task-complete-1" name="taskComplete" />
+                                    <label class="task-card__label" for="task-complete-1">
+                    Complete project proposal
+                  </label>
+                                </div>
+
+                                <div class="task-card__meta">
+                                    <span class="task-card__priority task-card__priority--high">High Priority</span>
+                                    <time class="task-card__due-date" datetime="2026-04-02T18:00">
+                    Due: April 2, 2026 at 6:00 PM
+                  </time>
+                                </div>
+                            </div>
+
+                            <!-- Task actions -->
+                            <div class="task-card__actions">
+                                <button class="task-card__delete-button" type="button" aria-label="Delete task">
+                  Delete
+                </button>
+                            </div>
+
+                            <!-- Nested subtasks section -->
+                            <section class="task-card__subtasks" aria-labelledby="subtasks-title-1">
+                                <h3 id="subtasks-title-1" class="task-card__subtasks-title">Subtasks</h3>
+
+                                <ul class="subtask-list" aria-label="Subtasks">
+                                    <li class="subtask-list__item" data-subtask-id="1-1">
+                                        <div class="subtask-card">
+                                            <input class="subtask-card__checkbox" type="checkbox" id="subtask-complete-1-1" name="subtaskComplete" />
+                                            <label class="subtask-card__label" for="subtask-complete-1-1">
+                        Draft outline
+                      </label>
+                                            <button class="subtask-card__delete-button" type="button" aria-label="Delete subtask">
+                        Delete
+                      </button>
+                                        </div>
+                                    </li>
+
+                                    <li class="subtask-list__item" data-subtask-id="1-2">
+                                        <div class="subtask-card">
+                                            <input class="subtask-card__checkbox" type="checkbox" id="subtask-complete-1-2" name="subtaskComplete" />
+                                            <label class="subtask-card__label" for="subtask-complete-1-2">
+                        Review requirements
+                      </label>
+                                            <button class="subtask-card__delete-button" type="button" aria-label="Delete subtask">
+                        Delete
+                      </button>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                                <!-- Subtask input area for future JS integration -->
+                                <form class="subtask-form" action="#" method="post">
+                                    <div class="subtask-form__field">
+                                        <label class="subtask-form__label" for="subtask-input-1">Add Subtask</label>
+                                        <input class="subtask-form__input" type="text" id="subtask-input-1" name="subtask" placeholder="Enter a subtask" />
+                                    </div>
+                                    <div class="subtask-form__actions">
+                                        <button class="subtask-form__button" type="submit">Add Subtask</button>
+                                    </div>
+                                </form>
+                            </section>
+                        </article>
+                    </li>
+                </ul>
+            </section>
+        </main>
+
+        <!-- Footer: app metadata or helper text -->
+        <footer class="todo-app__footer">
+            <p class="todo-app__footer-text">Todo List App Template</p>
+        </footer>
+    </div>
+    <script type="module" src="js/app.js"></script>
+
+
+</body>
+
+</html>
